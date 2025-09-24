@@ -129,7 +129,8 @@ class AccessTokenApi
      */
     public function authV1AccesstokenPost($clientId = null, $clientSecret = null)
     {
-        $this->authV1AccesstokenPostWithHttpInfo($clientId, $clientSecret);
+        list($response) = $this->authV1AccesstokenPostWithHttpInfo($clientId, $clientSecret);
+        return $response;
     }
 
     /**
@@ -176,7 +177,15 @@ class AccessTokenApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            $content = (string) $response->getBody();
+            $data = json_decode($content, true);
+
+            $token = new \DHLUK\Model\AccessTokenResponse();
+            $token->access_token = $data['access_token'] ?? null;
+            $token->token_type   = $data['token_type'] ?? null;
+            $token->expires_in   = $data['expires_in'] ?? null;
+
+            return [$token, $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
