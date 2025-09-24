@@ -125,7 +125,7 @@ class AccessTokenApi
      *
      * @throws \DHLUK\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \DHLUK\Model\AccessTokenResponse
      */
     public function authV1AccesstokenPost($clientId = null, $clientSecret = null)
     {
