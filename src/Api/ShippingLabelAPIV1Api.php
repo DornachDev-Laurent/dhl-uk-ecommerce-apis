@@ -978,36 +978,10 @@ class ShippingLabelAPIV1Api
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 429:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'object[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
+                    $e->setResponseObject($e->getResponseBody());
                     break;
             }
             throw $e;
