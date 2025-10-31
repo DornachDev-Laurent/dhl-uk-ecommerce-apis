@@ -62,8 +62,8 @@ class SupermodelIoLogisticsTrackingShipmentDetails implements ModelInterface, Ar
     protected static $openAPITypes = [
         'carrier' => '\DHLUK\Model\SupermodelIoLogisticsSupportingOrganization',
         'product' => '\DHLUK\Model\SupermodelIoLogisticsSupportingProduct',
-        'receiver' => 'SupermodelIoLogisticsSupportingOrganization',
-        'sender' => 'SupermodelIoLogisticsSupportingOrganization',
+        'receiver' => '\DHLUK\Model\SupermodelIoLogisticsSupportingOrganization',
+        'sender' => '\DHLUK\Model\SupermodelIoLogisticsSupportingOrganization',
         'proofOfDelivery' => '\DHLUK\Model\SupermodelIoLogisticsTrackingProofOfDelivery',
         'totalNumberOfPieces' => 'float',
         'pieceIds' => 'string[]',
