@@ -360,8 +360,19 @@ class ObjectSerializer
                 throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
             }
             return $data;
-        } else {
-            $data = is_string($data) ? json_decode($data) : $data;
+        } else {            
+            if (is_string($data) && self::isJsonObject($data)) {
+                $data = json_decode($data);
+            }
+            if ($class === '\DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp') {
+                if (is_string($data)) {
+                    return new \DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp($data);
+                }
+                if (is_array($data)) {
+                    return new \DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp($data);
+                }
+                return new \DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp(null);
+            }
             // If a discriminator is defined and points to a valid subclass, use it.
             $discriminator = $class::DISCRIMINATOR;
             if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
@@ -387,5 +398,20 @@ class ObjectSerializer
             }
             return $instance;
         }
+    }
+
+    private static function isJsonObject($string)
+    {
+        if (!is_string($string)) {
+            return false;
+        }
+
+        $trim = trim($string);
+
+        // JSON doit commencer par { ... } ou [ ... ]
+        return (
+            (strlen($trim) > 1 && $trim[0] === '{') ||
+            (strlen($trim) > 1 && $trim[0] === '[')
+        );
     }
 }

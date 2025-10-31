@@ -60,8 +60,8 @@ class SupermodelIoLogisticsTrackingShipmentEstimatedDeliveryTimeFrame implements
       * @var string[]
       */
     protected static $openAPITypes = [
-        'estimatedFrom' => 'SupermodelIoLogisticsSupportingTimestamp',
-        'estimatedThrough' => 'SupermodelIoLogisticsSupportingTimestamp'
+        'estimatedFrom' => '\DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp',
+        'estimatedThrough' => '\DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp'
     ];
 
     /**

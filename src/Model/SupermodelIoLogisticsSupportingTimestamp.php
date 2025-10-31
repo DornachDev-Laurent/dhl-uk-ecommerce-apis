@@ -60,7 +60,7 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
       * @var string[]
       */
     protected static $openAPITypes = [
-        
+        'value' => 'string'
     ];
 
     /**
@@ -71,7 +71,7 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        
+        'value' => null
     ];
 
     /**
@@ -101,7 +101,7 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'value' => 'timestamp'
     ];
 
     /**
@@ -110,7 +110,7 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $setters = [
-        
+        'value' => 'setValue'
     ];
 
     /**
@@ -119,7 +119,7 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $getters = [
-        
+        'value' => 'getValue'
     ];
 
     /**
@@ -180,8 +180,18 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct($data = null)    
     {
+        if (is_string($data)) {
+            // Cas API renvoie directement une string
+            $this->container['value'] = $data;
+        } elseif (is_array($data) && isset($data['value'])) {
+            // Cas API renvoie un objet { "value": "..." }
+            $this->container['value'] = $data['value'];
+        } else {
+            // Valeur absente
+            $this->container['value'] = null;
+        }
     }
 
     /**
@@ -267,9 +277,9 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return $this->container;
     }
 
     /**
@@ -294,6 +304,15 @@ class SupermodelIoLogisticsSupportingTimestamp implements ModelInterface, ArrayA
     {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
+
+    public function getValue()
+    {
+        return $this->container['value'] ?? null;
+    }
+
+    public function setValue($value)
+    {
+        $this->container['value'] = $value;
+        return $this;
+    }
 }
-
-

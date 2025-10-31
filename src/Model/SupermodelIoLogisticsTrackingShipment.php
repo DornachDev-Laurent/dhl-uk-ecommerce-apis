@@ -65,7 +65,7 @@ class SupermodelIoLogisticsTrackingShipment implements ModelInterface, ArrayAcce
         'origin' => '\DHLUK\Model\SupermodelIoLogisticsSupportingPlace',
         'destination' => '\DHLUK\Model\SupermodelIoLogisticsSupportingPlace',
         'status' => '\DHLUK\Model\SupermodelIoLogisticsTrackingShipmentEvent',
-        'estimatedTimeOfDelivery' => 'SupermodelIoLogisticsSupportingTimestamp',
+        'estimatedTimeOfDelivery' => '\DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp',
         'estimatedDeliveryTimeFrame' => '\DHLUK\Model\SupermodelIoLogisticsTrackingShipmentEstimatedDeliveryTimeFrame',
         'estimatedTimeOfDeliveryRemark' => 'mixed',
         'serviceUrl' => 'mixed',
@@ -226,7 +226,7 @@ class SupermodelIoLogisticsTrackingShipment implements ModelInterface, ArrayAcce
     const SERVICE_PARCEL_PL = 'parcel-pl';
     const SERVICE_DSC = 'dsc';
     const SERVICE_DGF = 'dgf';
-    const SERVICE_ECOMMERCE = 'ecommerce';
+    const SERVICE_ECOMMERCE = 'DHL eCommerce UK';
     
 
     

@@ -60,7 +60,7 @@ class SupermodelIoLogisticsTrackingShipmentEvent implements ModelInterface, Arra
       * @var string[]
       */
     protected static $openAPITypes = [
-        'timestamp' => 'SupermodelIoLogisticsSupportingTimestamp',
+        'timestamp' => '\DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp',
         'location' => '\DHLUK\Model\SupermodelIoLogisticsSupportingPlace',
         'statusCode' => 'string',
         'status' => 'string',

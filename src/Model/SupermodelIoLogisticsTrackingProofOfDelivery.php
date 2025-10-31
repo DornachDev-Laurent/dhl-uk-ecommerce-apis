@@ -60,7 +60,7 @@ class SupermodelIoLogisticsTrackingProofOfDelivery implements ModelInterface, Ar
       * @var string[]
       */
     protected static $openAPITypes = [
-        'timestamp' => 'SupermodelIoLogisticsSupportingTimestamp',
+        'timestamp' => '\DHLUK\Model\SupermodelIoLogisticsSupportingTimestamp',
         'signatureUrl' => 'string',
         'documentUrl' => 'string',
         'signed' => '\DHLUK\Model\SupermodelIoLogisticsSupportingPerson'
