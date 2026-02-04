@@ -240,7 +240,8 @@ class LocalmodelPieceEvent implements ModelInterface, ArrayAccess, \JsonSerializ
         $invalidProperties = [];
 
         $allowedValues = $this->getStatusCodeAllowableValues();
-        if (!is_null($this->container['statusCode']) && !in_array($this->container['statusCode'], $allowedValues, true)) {
+        // Ignorer les statusCode vides (chaîne vide ou null)
+        if (!is_null($this->container['statusCode']) && $this->container['statusCode'] !== '' && !in_array($this->container['statusCode'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'statusCode', must be one of '%s'",
                 $this->container['statusCode'],
@@ -330,6 +331,11 @@ class LocalmodelPieceEvent implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setStatusCode($statusCode)
     {
+        // Convertir les chaînes vides en null pour ignorer les statusCode invalides de l'API
+        if ($statusCode === '') {
+            $statusCode = null;
+        }
+        
         $allowedValues = $this->getStatusCodeAllowableValues();
         if (!is_null($statusCode) && !in_array($statusCode, $allowedValues, true)) {
             throw new \InvalidArgumentException(
