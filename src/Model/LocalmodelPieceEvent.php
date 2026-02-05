@@ -331,7 +331,6 @@ class LocalmodelPieceEvent implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function setStatusCode($statusCode)
     {
-        // Convertir les chaînes vides en null pour ignorer les statusCode invalides de l'API
         if ($statusCode === '') {
             $statusCode = null;
         }
